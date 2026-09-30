@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher's Day Card - Sir Randy Bello</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #d39b32;
+    --brown: #5c2f24;
+    --dark: #26110c;
+    --paper: #fffaf0;
+    --text: #3b2a1e;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    color: var(--text);
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%, #fff1a8 0 8%, transparent 25%),
+        radial-gradient(circle at 80% 80%, #f4b183 0 7%, transparent 23%),
+        linear-gradient(135deg, #21100c, #794633, #21100c);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: min(1100px, 96vw);
+    position: relative;
+    z-index: 2;
+}
+
+.toolbar {
+    background: rgba(255, 250, 240, 0.95);
+    padding: 14px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+    font-family: Arial, sans-serif;
+}
+
+.toolbar h2 {
+    margin: 0 10px 0 0;
+    font-size: 18px;
+}
+
+button,
+.file-button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+    background: var(--brown);
+    font-weight: bold;
+    transition: .25s;
+}
+
+button:hover,
+.file-button:hover {
+    transform: translateY(-2px);
+    background: #7d4634;
+}
+
+input[type="color"] {
+    width: 35px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* =========================
+   BOOK
+========================= */
+
+.book-container {
+    perspective: 1800px;
+}
+
+.book {
+    width: 100%;
+    height: min(680px, 72vh);
+    min-height: 520px;
+
+    position: relative;
+    transform-style: preserve-3d;
+
+    filter: drop-shadow(0 25px 30px rgba(0,0,0,.4));
+}
+
+/* =========================
+   PAGES
+========================= */
+
+.page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    width: 50%;
+
+    padding: 38px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            #dfd0b5,
+            #fffdf5 8%,
+            var(--paper) 95%,
+            #ddceb2
+        );
+
+    border: 1px solid #d3c2a2;
+
+    box-shadow:
+        inset 0 0 35px rgba(91,56,20,.08);
+}
+
+.left-page {
+    left: 0;
+    border-radius: 15px 0 0 15px;
+}
+
+.right-page {
+    right: 0;
+    border-radius: 0 15px 15px 0;
+}
+
+/* center binding */
+
+.binding {
+    position: absolute;
+    z-index: 20;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+    width: 5px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            #725b42,
+            #fff3d1,
+            #725b42
+        );
+}
+
+/* =========================
+   COVER
+========================= */
+
+.cover {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 50%;
+    height: 100%;
+
+    z-index: 30;
+
+    transform-origin: left center;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 1.3s cubic-bezier(.65,.05,.25,1);
+}
+
+.cover.open {
+    transform: rotateY(-168deg);
+}
+
+.cover-side {
+    position: absolute;
+
+    inset: 0;
+
+    backface-visibility: hidden;
+
+    border-radius: 15px 0 0 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    color: #ffe7a7;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3a1912,
+            #77432f,
+            #3d1b14
+        );
+
+    border: 10px solid #28100c;
+
+    box-shadow:
+        inset 0 0 0 3px #b47a38,
+        inset 0 0 40px #120604;
+}
+
+.cover-back {
+    transform: rotateY(180deg);
+}
+
+.cover-icon {
+    font-size: 70px;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.cover-side h1 {
+    font-size: clamp(28px, 5vw, 55px);
+    margin: 10px;
+}
+
+.cover-side p {
+    font-size: 18px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.title {
+    font-size: clamp(30px, 4vw, 48px);
+    color: var(--brown);
+    margin: 0 0 8px;
+}
+
+.subtitle {
+    color: #806b54;
+    font-family: Arial, sans-serif;
+}
+
+.teacher-name {
+    font-size: 30px;
+    color: #674737;
+}
+
+/* PHOTO */
+
+.photo {
+    display: block;
+
+    width: min(300px, 80%);
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    margin: 20px auto;
+
+    border-radius: 18px;
+
+    border: 8px solid #fff8e7;
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.25);
+
+    background: #e5d5b9;
+}
+
+.photo-note {
+    text-align: center;
+
+    color: #8b755c;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* MESSAGE */
+
+.quote {
+    font-size: 23px;
+
+    line-height: 1.5;
+
+    font-style: italic;
+
+    color: #674737;
+
+    margin-bottom: 20px;
+}
+
+.message {
+    min-height: 200px;
+
+    padding: 20px;
+
+    border-left: 5px solid var(--gold);
+
+    background: rgba(255,255,255,.55);
+
+    border-radius: 8px;
+
+    line-height: 1.7;
+
+    font-size: 18px;
+
+    outline: none;
+}
+
+.message:focus,
+[contenteditable="true"]:focus {
+    outline: 2px dashed var(--gold);
+    outline-offset: 5px;
+}
+
+.signature {
+    text-align: right;
+
+    margin-top: 25px;
+
+    font-size: 20px;
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+#confetti {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    place-items: center;
+
+    background: rgba(0,0,0,.75);
+
+    z-index: 200;
+
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+}
+
+.modal.show {
+    display: grid;
+}
+
+.editor-box {
+    width: min(650px, 95vw);
+
+    background: #fffaf0;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow: 0 20px 60px #000;
+}
+
+textarea {
+    width: 100%;
+
+    min-height: 230px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid #cbb99b;
+
+    font-size: 16px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 750px) {
+
+    .book {
+        height: 620px;
+    }
+
+    .page {
+        padding: 25px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .teacher-name {
+        font-size: 24px;
+    }
+
+    .photo {
+        width: 190px;
+    }
+
+    .quote {
+        font-size: 17px;
+    }
+
+    .message {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="container">
+
+    <!-- =========================
+         TOOLBAR
+    ========================== -->
+
+    <div class="toolbar">
+
+        <h2>📖 Teacher's Day Card</h2>
+
+        <button onclick="toggleBook()">
+            📖 Open / Close
+        </button>
+
+        <button onclick="celebrate()">
+            ✨ Celebrate
+        </button>
+
+        <button onclick="editMessage()">
+            ✍️ Edit Message
+        </button>
+
+        <label class="file-button">
+
+            🖼️ Add Photo
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                hidden
+            >
+
+        </label>
+
+        <label class="file-button">
+
+            🎨 Color
+
+            <input
+                type="color"
+                id="colorPicker"
+                value="#d39b32"
+            >
+
+        </label>
+
+        <button onclick="saveCard()">
+            💾 Save
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         BOOK
+    ========================== -->
+
+    <div class="book-container">
+
+        <div class="book">
+
+            <!-- LEFT PAGE -->
+
+            <section class="page left-page">
+
+                <h1
+                    class="title"
+                    contenteditable="true"
+                >
+                    Happy Teacher's Day!
+                </h1>
+
+                <div
+                    class="subtitle"
+                    contenteditable="true"
+                >
+                    A special thank-you for
+                </div>
+
+                <h2
+                    class="teacher-name"
+                    contenteditable="true"
+                >
+                    Sir Randy Bello
+                </h2>
+
+                <img
+                    id="teacherPhoto"
+                    class="photo"
+                    alt="Teacher photo"
+                    src="WIN_20260929_23_49_31_Pro.jpg"
+                >
+
+                <div class="photo-note">
+                    📸 Click "Add Photo" to add Sir Randy's picture.
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT PAGE -->
+
+            <section class="page right-page">
+
+                <div
+                    class="quote"
+                    contenteditable="true"
+                >
+                    “A great teacher inspires, guides,
+                    and leaves a little light in every
+                    student's life.”
+                </div>
+
+
+                <div
+                    id="message"
+                    class="message"
+                    contenteditable="true"
+                >
+
+                    Dear Sir Randy Bello,
+
+                    <br><br>
+
+                    Thank you for your patience,
+                    guidance, encouragement, and
+                    for making every lesson meaningful.
+
+                    <br><br>
+
+                    Your dedication as a teacher
+                    makes a difference that we will
+                    always remember.
+
+                    <br><br>
+
+                    Wishing you a wonderful
+                    Teacher's Day filled with
+                    appreciation, joy, and pride!
+
+                </div>
+
+
+                <div
+                    class="signature"
+                    contenteditable="true"
+                >
+
+                    With gratitude,
+
+                    <br>
+
+                    <b>Your Students ❤️</b>
+
+                </div>
+
+            </section>
+
+
+            <!-- BOOK BINDING -->
+
+            <div class="binding"></div>
+
+
+            <!-- FRONT COVER -->
+
+            <div
+                id="cover"
+                class="cover"
+            >
+
+                <!-- FRONT -->
+
+                <div class="cover-side">
+
+                    <div class="cover-icon">
+                        🎓
+                    </div>
+
+                    <h1>
+                        Teacher's Day
+                    </h1>
+
+                    <p>
+                        A special book for
+                    </p>
+
+                    <strong>
+                        Sir Randy Bello
+                    </strong>
+
+                    <p>
+                        ✨ Open the book ✨
+                    </p>
+
+                </div>
+
+
+                <!-- BACK OF COVER -->
+
+                <div class="cover-side cover-back">
+
+                    <div class="cover-icon">
+                        📚
+                    </div>
+
+                    <h1>
+                        Thank You!
+                    </h1>
+
+                    <p>
+                        Your dedication inspires us.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MESSAGE EDITOR
+========================= -->
+
+<div
+    id="modal"
+    class="modal"
+>
+
+    <div class="editor-box">
+
+        <h2>
+            ✍️ Customize Your Message
+        </h2>
+
+        <textarea
+            id="messageEditor"
+            placeholder="Write your Teacher's Day message here..."
+        ></textarea>
+
+        <br><br>
+
+        <button onclick="applyMessage()">
+            ✅ Apply
+        </button>
+
+        <button onclick="closeEditor()">
+            ❌ Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   BOOK OPEN / CLOSE
+========================= */
+
+const cover =
+    document.getElementById("cover");
+
+let bookOpen = false;
+
+function toggleBook() {
+
+    bookOpen = !bookOpen;
+
+    if (bookOpen) {
+
+        cover.classList.add("open");
+
+        celebrate();
+
+    } else {
+
+        cover.classList.remove("open");
+
+    }
+
+}
+
+
+/* =========================
+   PHOTO UPLOAD
+========================= */
+
+const photoInput =
+    document.getElementById("photoInput");
+
+const teacherPhoto =
+    document.getElementById("teacherPhoto");
+
+
+photoInput.addEventListener(
+    "change",
+    function(event) {
+
+        const file =
+            event.target.files[0];
+
+        if (!file) return;
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            function(e) {
+
+                teacherPhoto.src =
+                    e.target.result;
+
+            };
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =========================
+   COLOR CUSTOMIZATION
+========================= */
+
+const colorPicker =
+    document.getElementById("colorPicker");
+
+colorPicker.addEventListener(
+    "input",
+    function() {
+
+        document.documentElement.style
+            .setProperty(
+                "--gold",
+                colorPicker.value
+            );
+
+    }
+);
+
+
+/* =========================
+   MESSAGE EDITOR
+========================= */
+
+const modal =
+    document.getElementById("modal");
+
+const message =
+    document.getElementById("message");
+
+const messageEditor =
+    document.getElementById("messageEditor");
+
+
+function editMessage() {
+
+    messageEditor.value =
+        message.innerText;
+
+    modal.classList.add("show");
+
+    messageEditor.focus();
+
+}
+
+
+function applyMessage() {
+
+    const text =
+        messageEditor.value;
+
+    message.innerHTML =
+        text.replace(/\n/g, "<br>");
+
+    modal.classList.remove("show");
+
+    celebrate();
+
+}
+
+
+function closeEditor() {
+
+    modal.classList.remove("show");
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function celebrate() {
+
+    const canvas =
+        document.getElementById("confetti");
+
+    const ctx =
+        canvas.getContext("2d");
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+
+    const pieces = [];
+
+
+    for (let i = 0; i < 140; i++) {
+
+        pieces.push({
+
+            x:
+                canvas.width / 2,
+
+            y:
+                canvas.height * .4,
+
+            vx:
+                (Math.random() - .5) * 12,
+
+            vy:
+                -Math.random() * 12 - 3,
+
+            gravity:
+                .25,
+
+            size:
+                Math.random() * 7 + 4,
+
+            rotation:
+                Math.random() * 6,
+
+            alpha:
+                1,
+
+            color:
+                [
+                    "#f7c948",
+                    "#e76f51",
+                    "#4d908e",
+                    "#577590",
+                    "#f4a261",
+                    "#ffffff"
+                ][
+                    Math.floor(
+                        Math.random() * 6
+                    )
+                ]
+
+        });
+
+    }
+
+
+    let frame = 0;
+
+
+    function animation() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        pieces.forEach(p => {
+
+            p.x += p.vx;
+
+            p.y += p.vy;
+
+            p.vy += p.gravity;
+
+            p.rotation += .15;
+
+            p.alpha -= .012;
+
+
+            ctx.save();
+
+            ctx.globalAlpha =
+                Math.max(0, p.alpha);
+
+            ctx.translate(
+                p.x,
+                p.y
+            );
+
+            ctx.rotate(
+                p.rotation
+            );
+
+            ctx.fillStyle =
+                p.color;
+
+            ctx.fillRect(
+                0,
+                0,
+                p.size,
+                p.size * 1.7
+            );
+
+            ctx.restore();
+
+        });
+
+
+        frame++;
+
+
+        if (frame < 110) {
+
+            requestAnimationFrame(
+                animation
+            );
+
+        } else {
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+        }
+
+    }
+
+
+    animation();
+
+}
+
+
+/* =========================
+   SAVE MESSAGE
+========================= */
+
+function saveCard() {
+
+    localStorage.setItem(
+        "teacherMessage",
+        message.innerHTML
+    );
+
+    localStorage.setItem(
+        "teacherTitle",
+        document.querySelector(".title").innerHTML
+    );
+
+    alert(
+        "✅ Your customized card has been saved in this browser!"
+    );
+
+}
+
+
+/* =========================
+   LOAD SAVED MESSAGE
+========================= */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        const savedMessage =
+            localStorage.getItem(
+                "teacherMessage"
+            );
+
+        const savedTitle =
+            localStorage.getItem(
+                "teacherTitle"
+            );
+
+
+        if (savedMessage) {
+
+            message.innerHTML =
+                savedMessage;
+
+        }
+
+
+        if (savedTitle) {
+
+            document.querySelector(
+                ".title"
+            ).innerHTML =
+                savedTitle;
+
+        }
+
+    }
+);
+
+
+/* =========================
+   ESC CLOSE EDITOR
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeEditor();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   RESIZE
+========================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        const canvas =
+            document.getElementById(
+                "confetti"
+            );
+
+        canvas.width =
+            window.innerWidth;
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+);
+
+</script>
+
+</body>
+</html>
